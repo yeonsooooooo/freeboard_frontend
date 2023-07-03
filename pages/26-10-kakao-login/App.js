@@ -1,0 +1,1 @@
+<Route path="/auth/kakao/callback" component={Kakao} />
