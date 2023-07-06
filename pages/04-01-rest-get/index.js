@@ -27,7 +27,5 @@ export default function RestGetPage(){
       <button onClick={onClickSync}>REST-API 동기 요청하기</button>
       <div>{title}</div>
     </>
-
-)
-
+  )
 }
