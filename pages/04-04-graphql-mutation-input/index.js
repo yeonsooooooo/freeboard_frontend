@@ -16,12 +16,15 @@ const CREATE_BOARD = gql`
 `
 
 export default function GraphqlMutationPage() {
+  //request 보내는 함수 선언 방법
   const [나의함수] = useMutation(CREATE_BOARD)
 
+  //state에 담아서 버튼 클릭 시 함수 실행에 담아서 보냄.
   const [writer, setWriter] = useState("")
   const [title, setTitle] = useState("")
   const [contents, setContents] = useState("")
 
+  //'나의함수'가 request보내고 require 받아올 때까지 기다림.
   const onClickSubmit = async () => {
     const result = await 나의함수({
       variables:{ //variables 이게 $의 역할을 해줌
@@ -35,6 +38,8 @@ export default function GraphqlMutationPage() {
     alert(result.data.createBoard.message)
   }
 
+  //데이터를 보낼 때 'state'에 담아서 보내야함.
+  //이벤트 핸들러 함수 작성 후, 아래에서 바인딩 해주기.
   const onChangeWriter = (event) =>{
     setWriter(event.target.value)
   }
@@ -45,6 +50,7 @@ export default function GraphqlMutationPage() {
     setContents(event.target.value)
   }
   //입력되는 값을 가져오기 위해서 onChange 속성 사용
+  //바인딩 해주는 부분.
   return (
     <div>
       작성자 : <input type="text" onChange={onChangeWriter}/><br/>
