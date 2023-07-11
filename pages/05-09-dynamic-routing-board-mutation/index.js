@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {gql, useMutation} from '@apollo/client'
+import {useRouter} from 'next/router'
 
 //gql은 미리 만들어두고 이걸로 요청을 보내는 구조
 //gql `` 안에 넣고, 이걸 useMutation 함수로 호출한다.
@@ -17,27 +18,42 @@ const CREATE_BOARD = gql`
 `
 
 export default function GraphqlMutationPage() {
-  //request 보내는 함수 선언 방법
+  const router  = useRouter()
+  
   const [나의함수] = useMutation(CREATE_BOARD)
-
-  //state에 담아서 버튼 클릭 시 함수 실행에 담아서 보냄.
   const [writer, setWriter] = useState("")
   const [title, setTitle] = useState("")
   const [contents, setContents] = useState("")
 
-  //'나의함수'가 request보내고 require 받아올 때까지 기다림.
+
   const onClickSubmit = async () => {
-    const result = await 나의함수({
-      variables:{ //variables 이게 $의 역할을 해줌
-        //variables 자체가 문법. 이거 그대로 써주면 된다.
-        writer: writer,
-        title:title,
-        contents:contents
-      }
-    })
-    console.log(result)
-    alert(result.data.createBoard.message)
+    try{
+      const result = await 나의함수({
+        variables:{ //variables 이게 $의 역할을 해줌
+          writer: writer,
+          title:title,
+          contents:contents
+        }
+      })
+      console.log(result)
+      alert(result.data.createBoard.message)
+    
+      console.log(result.data.createBoard.number) // 게시글 번호, 근데 문자열 형태
+      router.push("05-10-dynamic-routed-board-mutation/" + result.data.createBoard.number)
+  
+      //템플릿 리터럴 : 위랑 같음
+      router.push(`05-10-dynamic-routed-board-mutation/${result.data.createBoard.number}`)
+    } catch(error){
+      //try에 있는 내용을 시도하다가 실패하면, 아랫줄 모두 무시!!! 하고 catch가 실행됨
+      console.log(error.message)
+      alert(error.message)
+    }
   }
+  //result.data.createBoard.number는 백엔드에서 받아온 게시글 number값
+  //그 숫자가 05-10의 동적 라우팅 number로 넘어가게 된다. 
+
+
+    
 
   //데이터를 보낼 때 'state'에 담아서 보내야함.
   //이벤트 핸들러 함수 작성 후, 아래에서 바인딩 해주기.

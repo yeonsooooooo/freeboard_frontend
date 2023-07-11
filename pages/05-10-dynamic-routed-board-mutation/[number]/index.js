@@ -16,10 +16,10 @@ const FETCH_BOARD = gql`
 export default function StaticRoutedPage(){
   const router = useRouter()
   
-  console.log(router.query.qqq)
+  console.log(router.query.number)
 
   const {data} = useQuery(FETCH_BOARD, {
-    variables:{  number: Number(router.query.qqq)
+    variables:{  number: Number(router.query.number)
       //여기에 이동해야하는 페이지 숫자가 들어가는 곳
   }})
  
@@ -28,7 +28,7 @@ export default function StaticRoutedPage(){
   
   return(
     <>
-      <div>{router.query.qqq}번 게시글로 이동이 완료되었습니다. </div>
+      <div>{router.query.number}번 게시글로 이동이 완료되었습니다. </div>
       <div>작성자: {data && data.fetchBoard.writer}</div>
       <div>제목 : {data && data.fetchBoard.title}</div>
       <div>내용 : {data && data.fetchBoard.contents}</div>
