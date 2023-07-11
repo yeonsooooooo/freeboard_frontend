@@ -33,10 +33,10 @@ export default function StaticRoutedPage(){
   // data && data.fetchBoard.writer 처리만 해주어도 data 들어왔을 때 보여주게 됨.
   return(
     <>
-      <div>1번 게시글로 이동이 완료되었습니다. </div>
+      {/* <div>1번 게시글로 이동이 완료되었습니다. </div>
       <div>작성자: {data && data.fetchBoard.writer}</div>
       <div>제목 : {data && data.fetchBoard.title}</div>
-      <div>내용 : {data && data.fetchBoard.contents}</div>
+      <div>내용 : {data && data.fetchBoard.contents}</div> */}
 
       <div>작성자: {data ? data.fetchBoard.writer: "로딩중입니다..."}</div>
       <div>제목 : {data && data.fetchBoard.title}</div>

@@ -5,13 +5,16 @@ export default function StaticRoutingPage(){
   const router = useRouter()
 
   const onClickMove1 = () =>{
-    router.push("/05-06-static-routed-board-query/1")
+    router.push("/05-08-dynamic-routed-board-query/1")
   }
   const onClickMove2 = () =>{
-    router.push("/05-06-static-routed-board-query/2")
+    router.push("/05-08-dynamic-routed-board-query/2")
   }
-  const onClickMove3 = () =>{
-    router.push("/05-06-static-routed-board-query/14696")
+  const onClickMove100 = () =>{
+    router.push("/05-08-dynamic-routed-board-query/100")
+  }
+  const onClickMove14696 = () =>{
+    router.push("/05-08-dynamic-routed-board-query/1111")
   }
 
   //아래와 같이 router를 사용해서 각 페이지로 이동할 수 있다.
@@ -20,7 +23,8 @@ export default function StaticRoutingPage(){
     <>
     <button onClick={onClickMove1}>1번 게시글 이동하기 </button>
     <button onClick={onClickMove2}>2번 게시글 이동하기 </button>
-    <button onClick={onClickMove3}>3번 게시글 이동하기 </button>
+    <button onClick={onClickMove100}>100번 게시글 이동하기 </button>
+    <button onClick={onClickMove14696}>14696번 게시글 이동하기 </button>
     </>
   
   )
